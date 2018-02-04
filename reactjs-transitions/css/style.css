@@ -1,0 +1,236 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #eaeef7;
+  font-family: "Lato";
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+ul {
+  -webkit-padding-start: 0;
+  list-style: none;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+  display: table;
+}
+
+.card__wrapper {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.card__container {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  min-width: 200px;
+  position: relative;
+  padding: 8px 0;
+}
+.card__content {
+  padding: 50px 30px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  background-color: #fff;
+  border-radius: 5px;
+  position: relative;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.card__list {
+  list-style: none;
+  display: inline-block;
+}
+
+.text--primary {
+  font-size: 1.2rem;
+  margin-right: 20px;
+}
+.text--small {
+  font-size: 0.9rem;
+  color: #254984;
+  font-weight: 100;
+}
+.text--link {
+  cursor: pointer;
+}
+.text--link:hover {
+  text-decoration: underline;
+}
+
+.wrapper {
+  height: 100%;
+  padding: 30px;
+  max-width: 800px;
+  min-width: 667px;
+  margin: 0 auto;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 1.5rem;
+  border: 0 none;
+  background-color: transparent;
+  outline: none;
+  color: rgba(255, 0, 0, 0.4);
+  padding: 30px;
+  cursor: pointer;
+}
+.close:hover {
+  color: rgba(255, 0, 0, 0.7);
+}
+
+.disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.disabled:hover {
+  background-color: #2faeff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.example-enter {
+  opacity: 0;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.example-leave {
+  opacity: 1;
+  max-height: 200px;
+  -webkit-transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+  transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0;
+  max-height: 0;
+}
+
+.example-appear {
+  opacity: 0.01;
+  -webkit-transform: translateY(100px);
+          transform: translateY(100px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.example-enter {
+  opacity: 0.01;
+  max-height: 0;
+  -webkit-transform: translateY(100px);
+          transform: translateY(100px);
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  max-height: 200px;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.btn {
+  font-family: 'Lato';
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 0 none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 15px 25px;
+}
+.btn--secondary {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid #ddd;
+}
+.btn--primary {
+  background-color: #254984;
+  color: #fff;
+  -webkit-transition: background-color 0.2s ease-in;
+  transition: background-color 0.2s ease-in;
+}
+.btn--primary:hover {
+  background-color: #1f3e70;
+}
+
+#app {
+  height: 100%;
+}
+
+.header {
+  height: 80px;
+  margin: 10px 0 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.header h1 {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.header .btn {
+  margin-top: 8px;
+  margin-left: 20px;
+}
+
+:disabled {
+  opacity: 0.7;
+  outline: 0 none;
+  cursor: default;
+  border: 1px solid #d8dff0;
+}
+:disabled:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+h1 {
+  font-weight: 300;
+}
+
+p {
+  font-size: 18px;
+  font-weight: 300;
+}

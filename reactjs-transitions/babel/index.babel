@@ -1,0 +1,212 @@
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+function uniqueKey() {
+	const guid =
+		s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4();
+
+	return guid;
+}
+
+function s4() {
+	return Math.floor((1 + Math.random()) * 0x10000)
+		.toString(16)
+		.substring(1);
+}
+
+var dataArray = [
+	{
+		message: "User Error",
+		link: "Try again",
+		key: uniqueKey()
+	},
+	{
+		message: "404",
+		link: "Refresh",
+		key: uniqueKey()
+	},
+	{
+		message: "Oops",
+		link: "Keep fishing",
+		key: uniqueKey()
+	}
+];
+
+class Notification extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			message: this.props.data.message,
+			link: this.props.data.link
+		};
+	}
+	deleteMessage() {
+		var newObject = {
+			message: this.state.message,
+			link: this.state.link
+		};
+		this.props.deleteMessage(newObject);
+		this.setState({
+			btn: false
+		})
+	}
+	render() {
+		return (
+			<div>
+				<ul>
+					<li className="card__list text--primary">{this.props.data.message}</li>
+					<li className="card__list text--small text--link">{this.props.data.link}</li>
+				</ul>
+				<button
+					type="button"
+					className="close"
+					onClick={this.deleteMessage.bind(this)}
+				>
+					&times;
+				</button>
+			</div>
+		);
+	}
+}
+class Header extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	
+	addMessage() {
+		this.props.addMessage();
+	}
+	resetForm() {
+		this.props.resetForm();
+	}
+
+	render() {
+		return (
+			<div className="header">
+				<h1>React Transition Demo</h1>
+				<div className="btn-container">
+					<button
+						disabled={this.props.btn}
+						className="btn btn--secondary"
+						onClick={this.resetForm.bind(this)}
+					>
+						Reset
+					</button>
+					<button className="btn btn--primary" onClick={this.addMessage.bind(this)}>
+						Add Message
+					</button>
+				</div>
+			</div>
+		);
+	}
+}
+
+class Parent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			data: this.props.data,
+			btn: true
+		};
+	}
+
+	addMessage(newObject) {
+		var messageArray = [
+    "Bleep",
+    "Bloop",
+		"Blop"
+];
+
+		
+			var linkArray = [
+    "Aren't you a little short for a stormtrooper?",
+    "These aren't the droids you're looking for.",
+		"I find your lack of faith disturbing.",
+		"Help me, Obi-Wan Kenobi.",
+		"I will not be the last Jedi.",
+		"May the force be with you."
+];
+		
+	
+		var randomMessage=Math.floor(Math.random()*messageArray.length);
+		var randomLink=Math.floor(Math.random()*linkArray.length);
+		
+		var newObject = {
+			message: messageArray[randomMessage],
+			link: linkArray[randomLink],
+			key: uniqueKey()
+		};
+		
+		var list = this.state.data; //get current array
+		var newList = list.slice(); //copy the array
+		newList.unshift(newObject); //add the newobject to the beginning
+		if(this.state.data.length >= 3) {
+			newList.pop();
+		}
+		this.setState({
+			data: newList,
+			btn: false
+		});
+	}
+
+	deleteMessage(i, newObject) {
+		var list = this.state.data;
+		var newList = list.slice();
+		newList.splice(i, 1);
+
+		this.setState({
+			data: newList,
+			btn: false
+		});
+	}
+
+	resetForm() {
+		this.setState({
+			data: this.props.data,
+			btn: true
+		});
+	}
+	
+	
+	render() {
+		var items = this.state.data.map(
+			function(data, i) {
+				return (
+					<div
+						style={{ transitionDelay: `${i * 0.1}s` }}
+						className="card__container"
+						key={data.key}
+					>
+						<div className="card__content">
+							<Notification
+								data={data}
+								key={data.key}
+								deleteMessage={this.deleteMessage.bind(this, i)}
+							/>
+						</div>
+					</div>
+				);
+			}.bind(this)
+		);
+		return (
+			<div className="wrapper">
+				<Header
+					resetForm={this.resetForm.bind(this)}
+					addMessage={this.addMessage.bind(this)}
+					btn = {this.state.btn}
+				/>
+					
+				<ReactCSSTransitionGroup
+					component="div"
+					transitionName="example"
+					transitionAppear={true}
+					transitionEnter={true}
+					transitionLeave={true}
+					className="card__wrapper"
+				>
+					{items}
+				</ReactCSSTransitionGroup>
+			</div>
+		);
+	}
+}
+
+ReactDOM.render(<Parent data={dataArray} />, document.getElementById("app"));
