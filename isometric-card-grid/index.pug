@@ -1,0 +1,40 @@
+- var cards = 48;
+mixin cardText
+	.contents
+		h2
+			strong="ABC"
+			="Design"
+		h3="Don Joel"
+		="Web Developer"
+		br
+		br
+		span="✉️"
+		="donjoel@example.com"
+		br
+		span="📞"
+		="(123) 456-7890"
+		br
+		br
+		="123 Nowhere Street"
+		br
+		="Dover, DE"
+		
+mixin cityOnly
+	.contents
+		.city="Dover, DE"
+	
+.cards
+	- while (cards--) {
+		a(href="#").stack
+			.card.top
+				+cardText
+			.card.mid-top
+				+cityOnly
+			.card.middle
+				+cityOnly
+			.card.mid-bottom
+				+cityOnly
+			.card.bottom
+				+cityOnly
+			.card.shadow
+	- }
